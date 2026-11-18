@@ -1,0 +1,1755 @@
+{
+	"@programName": "ZAP",
+	"@version": "2.17.0",
+	"@generated": "Wed, 18 Nov 2026 08:24:06",
+	"created": "2026-11-18T02:54:06.705903500Z",
+	"insights":[
+		{
+			"level": "High",
+			"reason": "Exceeded High",
+			"site": "",
+			"key": "insight.memory.usage",
+			"description": "Percentage of memory used",
+			"statistic": "96"
+		},
+		{
+			"level": "Low",
+			"reason": "Warning",
+			"site": "",
+			"key": "insight.log.warn",
+			"description": "ZAP warnings logged - see the zap.log file for details",
+			"statistic": "131"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "",
+			"key": "insight.network.failure",
+			"description": "Percentage of network failures",
+			"statistic": "1"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:8081",
+			"key": "insight.code.2xx",
+			"description": "Percentage of responses with status code 2xx",
+			"statistic": "92"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:8081",
+			"key": "insight.code.3xx",
+			"description": "Percentage of responses with status code 3xx",
+			"statistic": "2"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:8081",
+			"key": "insight.code.4xx",
+			"description": "Percentage of responses with status code 4xx",
+			"statistic": "4"
+		},
+		{
+			"level": "Info",
+			"reason": "Exceeded Low",
+			"site": "http://127.0.0.1:8081",
+			"key": "insight.response.slow",
+			"description": "Percentage of slow responses",
+			"statistic": "35"
+		}
+	],
+	"site":[ 
+		{
+			"@name": "https://127.0.0.1:8081",
+			"@host": "127.0.0.1",
+			"@port": "8081",
+			"@ssl": "true",
+			"alerts": [ 
+			]
+		},
+		{
+			"@name": "http://127.0.0.1:8081",
+			"@host": "127.0.0.1",
+			"@port": "8081",
+			"@ssl": "false",
+			"alerts": [ 
+				{
+					"pluginid": "40014",
+					"alertRef": "40014",
+					"alert": "Cross Site Scripting (Persistent)",
+					"name": "Cross Site Scripting (Persistent)",
+					"riskcode": "3",
+					"confidence": "2",
+					"riskdesc": "High (Medium)",
+					"desc": "<p>Cross-site Scripting (XSS) is an attack technique that involves echoing attacker-supplied code into a user's browser instance. A browser instance can be a standard web browser client, or a browser object embedded in a software product such as the browser within WinAmp, an RSS reader, or an email client. The code itself is usually written in HTML/JavaScript, but may also extend to VBScript, ActiveX, Java, Flash, or any other browser-supported technology.</p><p>When an attacker gets a user's browser to execute his/her code, the code will run within the security context (or zone) of the hosting web site. With this level of privilege, the code has the ability to read, modify and transmit any sensitive data accessible by the browser. A Cross-site Scripted user could have his/her account hijacked (cookie theft), their browser redirected to another location, or possibly shown fraudulent content delivered by the web site they are visiting. Cross-site Scripting attacks essentially compromise the trust relationship between a user and the web site. Applications utilizing browser object instances which load content from the file system may execute code under the local machine zone allowing for system compromise.</p><p></p><p>There are three types of Cross-site Scripting attacks: non-persistent, persistent and DOM-based.</p><p>Non-persistent attacks and DOM-based attacks require a user to either visit a specially crafted link laced with malicious code, or visit a malicious web page containing a web form, which when posted to the vulnerable site, will mount the attack. Using a malicious form will oftentimes take place when the vulnerable resource only accepts HTTP POST requests. In such a case, the form can be submitted automatically, without the victim's knowledge (e.g. by using JavaScript). Upon clicking on the malicious link or submitting the malicious form, the XSS payload will get echoed back and will get interpreted by the user's browser and execute. Another technique to send almost arbitrary requests (GET and POST) is by using an embedded client, such as Adobe Flash.</p><p>Persistent attacks occur when the malicious code is submitted to a web site where it's stored for a period of time. Examples of an attacker's favorite targets often include message board posts, web mail messages, and web chat software. The unsuspecting user is not required to interact with any additional site/link (e.g. an attacker site or a malicious link sent via email), just simply view the web page containing the code.</p>",
+					"instances":[ 
+						{
+							"id": "2199",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/",
+							"method": "GET",
+							"param": "mtxMessage",
+							"attack": "</div><script>alert(1);</script><div>",
+							"evidence": "",
+							"otherinfo": "Source URL: http://127.0.0.1:8081/vulnerabilities/xss_s/"
+						},
+						{
+							"id": "2195",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/ ()(btnSign,mtxMessage,txtName,user_token)",
+							"method": "POST",
+							"param": "txtName",
+							"attack": "</div><script>alert(1);</script><div>",
+							"evidence": "",
+							"otherinfo": "Source URL: http://127.0.0.1:8081/vulnerabilities/xss_s/"
+						},
+						{
+							"id": "2200",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/index.php ()(btnSign,mtxMessage,txtName)",
+							"method": "POST",
+							"param": "mtxMessage",
+							"attack": "</div><script>alert(1);</script><div>",
+							"evidence": "",
+							"otherinfo": "Source URL: http://127.0.0.1:8081/vulnerabilities/xss_s/index.php"
+						}
+					],
+					"count": "3",
+					"systemic": false,
+					"solution": "<p>Phase: Architecture and Design</p><p>Use a vetted library or framework that does not allow this weakness to occur or provides constructs that make this weakness easier to avoid.</p><p>Examples of libraries and frameworks that make it easier to generate properly encoded output include Microsoft's Anti-XSS library, the OWASP ESAPI Encoding module, and Apache Wicket.</p><p></p><p>Phases: Implementation; Architecture and Design</p><p>Understand the context in which your data will be used and the encoding that will be expected. This is especially important when transmitting data between different components, or when generating outputs that can contain multiple encodings at the same time, such as web pages or multi-part mail messages. Study all expected communication protocols and data representations to determine the required encoding strategies.</p><p>For any data that will be output to another web page, especially any data that was received from external inputs, use the appropriate encoding on all non-alphanumeric characters.</p><p>Consult the XSS Prevention Cheat Sheet for more details on the types of encoding and escaping that are needed.</p><p></p><p>Phase: Architecture and Design</p><p>For any security checks that are performed on the client side, ensure that these checks are duplicated on the server side, in order to avoid CWE-602. Attackers can bypass the client-side checks by modifying values after the checks have been performed, or by changing the client to remove the client-side checks entirely. Then, these modified values would be submitted to the server.</p><p></p><p>If available, use structured mechanisms that automatically enforce the separation between data and code. These mechanisms may be able to provide the relevant quoting, encoding, and validation automatically, instead of relying on the developer to provide this capability at every point where output is generated.</p><p></p><p>Phase: Implementation</p><p>For every web page that is generated, use and specify a character encoding such as ISO-8859-1 or UTF-8. When an encoding is not specified, the web browser may choose a different encoding by guessing which encoding is actually being used by the web page. This can cause the web browser to treat certain sequences as special, opening up the client to subtle XSS attacks. See CWE-116 for more mitigations related to encoding/escaping.</p><p></p><p>To help mitigate XSS attacks against the user's session cookie, set the session cookie to be HttpOnly. In browsers that support the HttpOnly feature (such as more recent versions of Internet Explorer and Firefox), this attribute can prevent the user's session cookie from being accessible to malicious client-side scripts that use document.cookie. This is not a complete solution, since HttpOnly is not supported by all browsers. More importantly, XMLHTTPRequest and other powerful browser technologies provide read access to HTTP headers, including the Set-Cookie header in which the HttpOnly flag is set.</p><p></p><p>Assume all input is malicious. Use an \"accept known good\" input validation strategy, i.e., use an allow list of acceptable inputs that strictly conform to specifications. Reject any input that does not strictly conform to specifications, or transform it into something that does. Do not rely exclusively on looking for malicious or malformed inputs (i.e., do not rely on a deny list). However, deny lists can be useful for detecting potential attacks or determining which inputs are so malformed that they should be rejected outright.</p><p></p><p>When performing input validation, consider all potentially relevant properties, including length, type of input, the full range of acceptable values, missing or extra inputs, syntax, consistency across related fields, and conformance to business rules. As an example of business rule logic, \"boat\" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if you are expecting colors such as \"red\" or \"blue.\"</p><p></p><p>Ensure that you perform input validation at well-defined interfaces within the application. This will help protect the application even if a component is reused or moved elsewhere.</p><p>\t</p>",
+					"otherinfo": "<p>Source URL: http://127.0.0.1:8081/vulnerabilities/xss_s/</p>",
+					"reference": "<p>https://owasp.org/www-community/attacks/xss/</p><p>https://cwe.mitre.org/data/definitions/79.html</p>",
+					"cweid": "79",
+					"wascid": "8",
+					"sourceid": "6441"
+				},
+				{
+					"pluginid": "40012",
+					"alertRef": "40012",
+					"alert": "Cross Site Scripting (Reflected)",
+					"name": "Cross Site Scripting (Reflected)",
+					"riskcode": "3",
+					"confidence": "2",
+					"riskdesc": "High (Medium)",
+					"desc": "<p>Cross-site Scripting (XSS) is an attack technique that involves echoing attacker-supplied code into a user's browser instance. A browser instance can be a standard web browser client, or a browser object embedded in a software product such as the browser within WinAmp, an RSS reader, or an email client. The code itself is usually written in HTML/JavaScript, but may also extend to VBScript, ActiveX, Java, Flash, or any other browser-supported technology.</p><p>When an attacker gets a user's browser to execute his/her code, the code will run within the security context (or zone) of the hosting web site. With this level of privilege, the code has the ability to read, modify and transmit any sensitive data accessible by the browser. A Cross-site Scripted user could have his/her account hijacked (cookie theft), their browser redirected to another location, or possibly shown fraudulent content delivered by the web site they are visiting. Cross-site Scripting attacks essentially compromise the trust relationship between a user and the web site. Applications utilizing browser object instances which load content from the file system may execute code under the local machine zone allowing for system compromise.</p><p></p><p>There are three types of Cross-site Scripting attacks: non-persistent, persistent and DOM-based.</p><p>Non-persistent attacks and DOM-based attacks require a user to either visit a specially crafted link laced with malicious code, or visit a malicious web page containing a web form, which when posted to the vulnerable site, will mount the attack. Using a malicious form will oftentimes take place when the vulnerable resource only accepts HTTP POST requests. In such a case, the form can be submitted automatically, without the victim's knowledge (e.g. by using JavaScript). Upon clicking on the malicious link or submitting the malicious form, the XSS payload will get echoed back and will get interpreted by the user's browser and execute. Another technique to send almost arbitrary requests (GET and POST) is by using an embedded client, such as Adobe Flash.</p><p>Persistent attacks occur when the malicious code is submitted to a web site where it's stored for a period of time. Examples of an attacker's favorite targets often include message board posts, web mail messages, and web chat software. The unsuspecting user is not required to interact with any additional site/link (e.g. an attacker site or a malicious link sent via email), just simply view the web page containing the code.</p>",
+					"instances":[ 
+						{
+							"id": "2193",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/brute/?Login=Login&password=ZAP&username=%27%22%3CscrIpt%3Ealert%281%29%3B%3C%2FscRipt%3E",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/brute\/ (Login,password,username)",
+							"method": "GET",
+							"param": "username",
+							"attack": "'\"<scrIpt>alert(1);</scRipt>",
+							"evidence": "'\"<scrIpt>alert(1);</scRipt>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2194",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/brute/index.php?Login=Login&password=ZAP&username=%27%22%3CscrIpt%3Ealert%281%29%3B%3C%2FscRipt%3E",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/brute\/index.php (Login,password,username)",
+							"method": "GET",
+							"param": "username",
+							"attack": "'\"<scrIpt>alert(1);</scRipt>",
+							"evidence": "'\"<scrIpt>alert(1);</scRipt>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2187",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/sqli/?Submit=Submit&id=%27%22%3CscrIpt%3Ealert%281%29%3B%3C%2FscRipt%3E",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/sqli\/ (Submit,id)",
+							"method": "GET",
+							"param": "id",
+							"attack": "'\"<scrIpt>alert(1);</scRipt>",
+							"evidence": "'\"<scrIpt>alert(1);</scRipt>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2192",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/sqli/index.php?Submit=Submit&id=%27%22%3CscrIpt%3Ealert%281%29%3B%3C%2FscRipt%3E",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/sqli\/index.php (Submit,id)",
+							"method": "GET",
+							"param": "id",
+							"attack": "'\"<scrIpt>alert(1);</scRipt>",
+							"evidence": "'\"<scrIpt>alert(1);</scRipt>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2177",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_r/?name=%3C%2Fpre%3E%3CscrIpt%3Ealert%281%29%3B%3C%2FscRipt%3E%3Cpre%3E",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_r\/ (name)",
+							"method": "GET",
+							"param": "name",
+							"attack": "</pre><scrIpt>alert(1);</scRipt><pre>",
+							"evidence": "</pre><scrIpt>alert(1);</scRipt><pre>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2182",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_r/index.php?name=%3C%2Fpre%3E%3CscrIpt%3Ealert%281%29%3B%3C%2FscRipt%3E%3Cpre%3E",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_r\/index.php (name)",
+							"method": "GET",
+							"param": "name",
+							"attack": "</pre><scrIpt>alert(1);</scRipt><pre>",
+							"evidence": "</pre><scrIpt>alert(1);</scRipt><pre>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2189",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/ ()(btnSign,mtxMessage,txtName)",
+							"method": "POST",
+							"param": "btnSign",
+							"attack": "</div><scrIpt>alert(1);</scRipt><div>",
+							"evidence": "</div><scrIpt>alert(1);</scRipt><div>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2184",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/ ()(btnSign,mtxMessage,txtName)",
+							"method": "POST",
+							"param": "mtxMessage",
+							"attack": "</div><scrIpt>alert(1);</scRipt><div>",
+							"evidence": "</div><scrIpt>alert(1);</scRipt><div>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2179",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/ ()(btnSign,mtxMessage,txtName)",
+							"method": "POST",
+							"param": "txtName",
+							"attack": "</div><scrIpt>alert(1);</scRipt><div>",
+							"evidence": "</div><scrIpt>alert(1);</scRipt><div>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2188",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/ ()(btnSign,mtxMessage,txtName,user_token)",
+							"method": "POST",
+							"param": "btnSign",
+							"attack": "</div><scrIpt>alert(1);</scRipt><div>",
+							"evidence": "</div><scrIpt>alert(1);</scRipt><div>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2183",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/ ()(btnSign,mtxMessage,txtName,user_token)",
+							"method": "POST",
+							"param": "mtxMessage",
+							"attack": "</div><scrIpt>alert(1);</scRipt><div>",
+							"evidence": "</div><scrIpt>alert(1);</scRipt><div>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2178",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/ ()(btnSign,mtxMessage,txtName,user_token)",
+							"method": "POST",
+							"param": "txtName",
+							"attack": "</div><scrIpt>alert(1);</scRipt><div>",
+							"evidence": "</div><scrIpt>alert(1);</scRipt><div>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2191",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/index.php ()(btnSign,mtxMessage,txtName)",
+							"method": "POST",
+							"param": "btnSign",
+							"attack": "</div><scrIpt>alert(1);</scRipt><div>",
+							"evidence": "</div><scrIpt>alert(1);</scRipt><div>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2186",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/index.php ()(btnSign,mtxMessage,txtName)",
+							"method": "POST",
+							"param": "mtxMessage",
+							"attack": "</div><scrIpt>alert(1);</scRipt><div>",
+							"evidence": "</div><scrIpt>alert(1);</scRipt><div>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2181",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/index.php ()(btnSign,mtxMessage,txtName)",
+							"method": "POST",
+							"param": "txtName",
+							"attack": "</div><scrIpt>alert(1);</scRipt><div>",
+							"evidence": "</div><scrIpt>alert(1);</scRipt><div>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2190",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/index.php ()(btnSign,mtxMessage,txtName,user_token)",
+							"method": "POST",
+							"param": "btnSign",
+							"attack": "</div><scrIpt>alert(1);</scRipt><div>",
+							"evidence": "</div><scrIpt>alert(1);</scRipt><div>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2185",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/index.php ()(btnSign,mtxMessage,txtName,user_token)",
+							"method": "POST",
+							"param": "mtxMessage",
+							"attack": "</div><scrIpt>alert(1);</scRipt><div>",
+							"evidence": "</div><scrIpt>alert(1);</scRipt><div>",
+							"otherinfo": ""
+						},
+						{
+							"id": "2180",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/index.php ()(btnSign,mtxMessage,txtName,user_token)",
+							"method": "POST",
+							"param": "txtName",
+							"attack": "</div><scrIpt>alert(1);</scRipt><div>",
+							"evidence": "</div><scrIpt>alert(1);</scRipt><div>",
+							"otherinfo": ""
+						}
+					],
+					"count": "18",
+					"systemic": false,
+					"solution": "<p>Phase: Architecture and Design</p><p>Use a vetted library or framework that does not allow this weakness to occur or provides constructs that make this weakness easier to avoid.</p><p>Examples of libraries and frameworks that make it easier to generate properly encoded output include Microsoft's Anti-XSS library, the OWASP ESAPI Encoding module, and Apache Wicket.</p><p></p><p>Phases: Implementation; Architecture and Design</p><p>Understand the context in which your data will be used and the encoding that will be expected. This is especially important when transmitting data between different components, or when generating outputs that can contain multiple encodings at the same time, such as web pages or multi-part mail messages. Study all expected communication protocols and data representations to determine the required encoding strategies.</p><p>For any data that will be output to another web page, especially any data that was received from external inputs, use the appropriate encoding on all non-alphanumeric characters.</p><p>Consult the XSS Prevention Cheat Sheet for more details on the types of encoding and escaping that are needed.</p><p></p><p>Phase: Architecture and Design</p><p>For any security checks that are performed on the client side, ensure that these checks are duplicated on the server side, in order to avoid CWE-602. Attackers can bypass the client-side checks by modifying values after the checks have been performed, or by changing the client to remove the client-side checks entirely. Then, these modified values would be submitted to the server.</p><p></p><p>If available, use structured mechanisms that automatically enforce the separation between data and code. These mechanisms may be able to provide the relevant quoting, encoding, and validation automatically, instead of relying on the developer to provide this capability at every point where output is generated.</p><p></p><p>Phase: Implementation</p><p>For every web page that is generated, use and specify a character encoding such as ISO-8859-1 or UTF-8. When an encoding is not specified, the web browser may choose a different encoding by guessing which encoding is actually being used by the web page. This can cause the web browser to treat certain sequences as special, opening up the client to subtle XSS attacks. See CWE-116 for more mitigations related to encoding/escaping.</p><p></p><p>To help mitigate XSS attacks against the user's session cookie, set the session cookie to be HttpOnly. In browsers that support the HttpOnly feature (such as more recent versions of Internet Explorer and Firefox), this attribute can prevent the user's session cookie from being accessible to malicious client-side scripts that use document.cookie. This is not a complete solution, since HttpOnly is not supported by all browsers. More importantly, XMLHTTPRequest and other powerful browser technologies provide read access to HTTP headers, including the Set-Cookie header in which the HttpOnly flag is set.</p><p></p><p>Assume all input is malicious. Use an \"accept known good\" input validation strategy, i.e., use an allow list of acceptable inputs that strictly conform to specifications. Reject any input that does not strictly conform to specifications, or transform it into something that does. Do not rely exclusively on looking for malicious or malformed inputs (i.e., do not rely on a deny list). However, deny lists can be useful for detecting potential attacks or determining which inputs are so malformed that they should be rejected outright.</p><p></p><p>When performing input validation, consider all potentially relevant properties, including length, type of input, the full range of acceptable values, missing or extra inputs, syntax, consistency across related fields, and conformance to business rules. As an example of business rule logic, \"boat\" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if you are expecting colors such as \"red\" or \"blue.\"</p><p></p><p>Ensure that you perform input validation at well-defined interfaces within the application. This will help protect the application even if a component is reused or moved elsewhere.</p><p>\t</p>",
+					"otherinfo": "",
+					"reference": "<p>https://owasp.org/www-community/attacks/xss/</p><p>https://cwe.mitre.org/data/definitions/79.html</p>",
+					"cweid": "79",
+					"wascid": "8",
+					"sourceid": "5915"
+				},
+				{
+					"pluginid": "6",
+					"alertRef": "6-2",
+					"alert": "Path Traversal",
+					"name": "Path Traversal",
+					"riskcode": "3",
+					"confidence": "2",
+					"riskdesc": "High (Medium)",
+					"desc": "<p>The Path Traversal attack technique allows an attacker access to files, directories, and commands that potentially reside outside the web document root directory. An attacker may manipulate a URL in such a way that the web site will execute or reveal the contents of arbitrary files anywhere on the web server. Any device that exposes an HTTP-based interface is potentially vulnerable to Path Traversal.</p><p></p><p>Most web sites restrict user access to a specific portion of the file-system, typically called the \"web document root\" or \"CGI root\" directory. These directories contain the files intended for user access and the executable necessary to drive web application functionality. To access files or execute commands anywhere on the file-system, Path Traversal attacks will utilize the ability of special-characters sequences.</p><p></p><p>The most basic Path Traversal attack uses the \"../\" special-character sequence to alter the resource location requested in the URL. Although most popular web servers will prevent this technique from escaping the web document root, alternate encodings of the \"../\" sequence may help bypass the security filters. These method variations include valid and invalid Unicode-encoding (\"..%u2216\" or \"..%c0%af\") of the forward slash character, backslash characters (\"..\\\") on Windows-based servers, URL encoded characters \"%2e%2e%2f\"), and double URL encoding (\"..%255c\") of the backslash character.</p><p></p><p>Even if the web server properly restricts Path Traversal attempts in the URL path, a web application itself may still be vulnerable due to improper handling of user-supplied input. This is a common problem of web applications that use template mechanisms or load static text from files. In variations of the attack, the original URL parameter value is substituted with the file name of one of the web application's dynamic scripts. Consequently, the results can reveal source code because the file is interpreted as text instead of an executable script. These techniques often employ additional special characters such as the dot (\".\") to reveal the listing of the current working directory, or \"%00\" NULL characters in order to bypass rudimentary file extension checks.</p>",
+					"instances":[ 
+						{
+							"id": "2175",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/fi/?page=%2Fetc%2Fpasswd",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/fi\/ (page)",
+							"method": "GET",
+							"param": "page",
+							"attack": "/etc/passwd",
+							"evidence": "root:x:0:0",
+							"otherinfo": ""
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Assume all input is malicious. Use an \"accept known good\" input validation strategy, i.e., use an allow list of acceptable inputs that strictly conform to specifications. Reject any input that does not strictly conform to specifications, or transform it into something that does. Do not rely exclusively on looking for malicious or malformed inputs (i.e., do not rely on a deny list). However, deny lists can be useful for detecting potential attacks or determining which inputs are so malformed that they should be rejected outright.</p><p></p><p>When performing input validation, consider all potentially relevant properties, including length, type of input, the full range of acceptable values, missing or extra inputs, syntax, consistency across related fields, and conformance to business rules. As an example of business rule logic, \"boat\" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if you are expecting colors such as \"red\" or \"blue.\"</p><p></p><p>For filenames, use stringent allow lists that limit the character set to be used. If feasible, only allow a single \".\" character in the filename to avoid weaknesses, and exclude directory separators such as \"/\". Use an allow list of allowable file extensions.</p><p></p><p>Warning: if you attempt to cleanse your data, then do so that the end result is not in the form that can be dangerous. A sanitizing mechanism can remove characters such as '.' and ';' which may be required for some exploits. An attacker can try to fool the sanitizing mechanism into \"cleaning\" data into a dangerous form. Suppose the attacker injects a '.' inside a filename (e.g. \"sensi.tiveFile\") and the sanitizing mechanism removes the character resulting in the valid filename, \"sensitiveFile\". If the input data are now assumed to be safe, then the file may be compromised. </p><p></p><p>Inputs should be decoded and canonicalized to the application's current internal representation before being validated. Make sure that your application does not decode the same input twice. Such errors could be used to bypass allow list schemes by introducing dangerous inputs after they have been checked.</p><p></p><p>Use a built-in path canonicalization function (such as realpath() in C) that produces the canonical version of the pathname, which effectively removes \"..\" sequences and symbolic links.</p><p></p><p>Run your code using the lowest privileges that are required to accomplish the necessary tasks. If possible, create isolated accounts with limited privileges that are only used for a single task. That way, a successful attack will not immediately give the attacker access to the rest of the software or its environment. For example, database applications rarely need to run as the database administrator, especially in day-to-day operations.</p><p></p><p>When the set of acceptable objects, such as filenames or URLs, is limited or known, create a mapping from a set of fixed input values (such as numeric IDs) to the actual filenames or URLs, and reject all other inputs.</p><p></p><p>Run your code in a \"jail\" or similar sandbox environment that enforces strict boundaries between the process and the operating system. This may effectively restrict which files can be accessed in a particular directory or which commands can be executed by your software.</p><p></p><p>OS-level examples include the Unix chroot jail, AppArmor, and SELinux. In general, managed code may provide some protection. For example, java.io.FilePermission in the Java SecurityManager allows you to specify restrictions on file operations.</p><p></p><p>This may not be a feasible solution, and it only limits the impact to the operating system; the rest of your application may still be subject to compromise.</p><p></p>",
+					"otherinfo": "",
+					"reference": "<p>https://owasp.org/www-community/attacks/Path_Traversal</p><p>https://cwe.mitre.org/data/definitions/22.html</p>",
+					"cweid": "22",
+					"wascid": "33",
+					"sourceid": "1740"
+				},
+				{
+					"pluginid": "7",
+					"alertRef": "7",
+					"alert": "Remote File Inclusion",
+					"name": "Remote File Inclusion",
+					"riskcode": "3",
+					"confidence": "2",
+					"riskdesc": "High (Medium)",
+					"desc": "<p>Remote File Include (RFI) is an attack technique used to exploit \"dynamic file include\" mechanisms in web applications. When web applications take user input (URL, parameter value, etc.) and pass them into file include commands, the web application might be tricked into including remote files with malicious code.</p><p></p><p>Almost all web application frameworks support file inclusion. File inclusion is mainly used for packaging common code into separate files that are later referenced by main application modules. When a web application references an include file, the code in this file may be executed implicitly or explicitly by calling specific procedures. If the choice of module to load is based on elements from the HTTP request, the web application might be vulnerable to RFI.</p><p>An attacker can use RFI for:</p><p>    * Running malicious code on the server: any code in the included malicious files will be run by the server. If the file include is not executed using some wrapper, code in include files is executed in the context of the server user. This could lead to a complete system compromise.</p><p>    * Running malicious code on clients: the attacker's malicious code can manipulate the content of the response sent to the client. The attacker can embed malicious code in the response that will be run by the client (for example, JavaScript to steal the client session cookies).</p><p></p><p>PHP is particularly vulnerable to RFI attacks due to the extensive use of \"file includes\" in PHP programming and due to default server configurations that increase susceptibility to an RFI attack.</p>",
+					"instances":[ 
+						{
+							"id": "2176",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/fi/?page=http%3A%2F%2Fwww.google.com%2F",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/fi\/ (page)",
+							"method": "GET",
+							"param": "page",
+							"attack": "http://www.google.com/",
+							"evidence": "<title>Google</title>",
+							"otherinfo": ""
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Phase: Architecture and Design</p><p>When the set of acceptable objects, such as filenames or URLs, is limited or known, create a mapping from a set of fixed input values (such as numeric IDs) to the actual filenames or URLs, and reject all other inputs.</p><p>For example, ID 1 could map to \"inbox.txt\" and ID 2 could map to \"profile.txt\". Features such as the ESAPI AccessReferenceMap provide this capability.</p><p></p><p>Phases: Architecture and Design; Operation</p><p>Run your code in a \"jail\" or similar sandbox environment that enforces strict boundaries between the process and the operating system. This may effectively restrict which files can be accessed in a particular directory or which commands can be executed by your software.</p><p>OS-level examples include the Unix chroot jail, AppArmor, and SELinux. In general, managed code may provide some protection. For example, java.io.FilePermission in the Java SecurityManager allows you to specify restrictions on file operations.</p><p>This may not be a feasible solution, and it only limits the impact to the operating system; the rest of your application may still be subject to compromise.</p><p>Be careful to avoid CWE-243 and other weaknesses related to jails.</p><p>For PHP, the interpreter offers restrictions such as open basedir or safe mode which can make it more difficult for an attacker to escape out of the application. Also consider Suhosin, a hardened PHP extension, which includes various options that disable some of the more dangerous PHP features.</p><p></p><p>Phase: Implementation</p><p>Assume all input is malicious. Use an \"accept known good\" input validation strategy, i.e., use an allow list of acceptable inputs that strictly conform to specifications. Reject any input that does not strictly conform to specifications, or transform it into something that does. Do not rely exclusively on looking for malicious or malformed inputs (i.e., do not rely on a deny list). However, deny lists can be useful for detecting potential attacks or determining which inputs are so malformed that they should be rejected outright.</p><p>When performing input validation, consider all potentially relevant properties, including length, type of input, the full range of acceptable values, missing or extra inputs, syntax, consistency across related fields, and conformance to business rules. As an example of business rule logic, \"boat\" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if you are expecting colors such as \"red\" or \"blue.\"</p><p>For filenames, use stringent allow lists that limit the character set to be used. If feasible, only allow a single \".\" character in the filename to avoid weaknesses such as CWE-23, and exclude directory separators such as \"/\" to avoid CWE-36. Use an allow list of allowable file extensions, which will help to avoid CWE-434.</p><p></p><p>Phases: Architecture and Design; Operation</p><p>Store library, include, and utility files outside of the web document root, if possible. Otherwise, store them in a separate directory and use the web server's access control capabilities to prevent attackers from directly requesting them. One common practice is to define a fixed constant in each calling program, then check for the existence of the constant in the library/include file; if the constant does not exist, then the file was directly requested, and it can exit immediately.</p><p>This significantly reduces the chance of an attacker being able to bypass any protection mechanisms that are in the base program but not in the include files. It will also reduce your attack surface.</p><p></p><p>Phases: Architecture and Design; Implementation</p><p>Understand all the potential areas where untrusted inputs can enter your software: parameters or arguments, cookies, anything read from the network, environment variables, reverse DNS lookups, query results, request headers, URL components, e-mail, files, databases, and any external systems that provide data to the application. Remember that such inputs may be obtained indirectly through API calls.</p><p>Many file inclusion problems occur because the programmer assumed that certain inputs could not be modified, especially for cookies and URL components.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/07-Input_Validation_Testing/11.2-Testing_for_Remote_File_Inclusion</p><p>https://cwe.mitre.org/data/definitions/98.html</p>",
+					"cweid": "98",
+					"wascid": "5",
+					"sourceid": "2741"
+				},
+				{
+					"pluginid": "40018",
+					"alertRef": "40018",
+					"alert": "SQL Injection",
+					"name": "SQL Injection",
+					"riskcode": "3",
+					"confidence": "2",
+					"riskdesc": "High (Medium)",
+					"desc": "<p>SQL injection may be possible.</p>",
+					"instances":[ 
+						{
+							"id": "2203",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/exec/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/exec\/index.php ()(Submit,ip)",
+							"method": "POST",
+							"param": "ip",
+							"attack": "ZAP AND 1=1 -- ",
+							"evidence": "",
+							"otherinfo": "The page results were successfully manipulated using the boolean conditions [ZAP AND 1=1 -- ] and [ZAP AND 1=2 -- ]\nThe parameter value being modified was stripped from the HTML output for the purposes of the comparison.\nData was returned for the original parameter.\nThe vulnerability was detected by successfully restricting the data originally returned, by manipulating the parameter."
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Do not trust client side input, even if there is client side validation in place.</p><p>In general, type check all data on the server side.</p><p>If the application uses JDBC, use PreparedStatement or CallableStatement, with parameters passed by '?'</p><p>If the application uses ASP, use ADO Command Objects with strong type checking and parameterized queries.</p><p>If database Stored Procedures can be used, use them.</p><p>Do *not* concatenate strings into queries in the stored procedure, or use 'exec', 'exec immediate', or equivalent functionality!</p><p>Do not create dynamic SQL queries using simple string concatenation.</p><p>Escape all data received from the client.</p><p>Apply an 'allow list' of allowed characters, or a 'deny list' of disallowed characters in user input.</p><p>Apply the principle of least privilege by using the least privileged database user possible.</p><p>In particular, avoid using the 'sa' or 'db-owner' database users. This does not eliminate SQL injection, but minimizes its impact.</p><p>Grant the minimum database access that is necessary for the application.</p>",
+					"otherinfo": "<p>The page results were successfully manipulated using the boolean conditions [ZAP AND 1=1 -- ] and [ZAP AND 1=2 -- ]</p><p>The parameter value being modified was stripped from the HTML output for the purposes of the comparison.</p><p>Data was returned for the original parameter.</p><p>The vulnerability was detected by successfully restricting the data originally returned, by manipulating the parameter.</p>",
+					"reference": "<p>https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html</p>",
+					"cweid": "89",
+					"wascid": "19",
+					"sourceid": "6982"
+				},
+				{
+					"pluginid": "10202",
+					"alertRef": "10202",
+					"alert": "Absence of Anti-CSRF Tokens",
+					"name": "Absence of Anti-CSRF Tokens",
+					"riskcode": "2",
+					"confidence": "1",
+					"riskdesc": "Medium (Low)",
+					"desc": "<p>No Anti-CSRF tokens were found in a HTML submission form.</p><p>A cross-site request forgery is an attack that involves forcing a victim to send an HTTP request to a target destination without their knowledge or intent in order to perform an action as the victim. The underlying cause is application functionality using predictable URL/form actions in a repeatable way. The nature of the attack is that CSRF exploits the trust that a web site has for a user. By contrast, cross-site scripting (XSS) exploits the trust that a user has for a web site. Like XSS, CSRF attacks are not necessarily cross-site, but they can be. Cross-site request forgery is also known as CSRF, XSRF, one-click attack, session riding, confused deputy, and sea surf.</p><p></p><p>CSRF attacks are effective in a number of situations, including:</p><p>    * The victim has an active session on the target site.</p><p>    * The victim is authenticated via HTTP auth on the target site.</p><p>    * The victim is on the same local network as the target site.</p><p></p><p>CSRF has primarily been used to perform an action against a target site using the victim's privileges, but recent techniques have been discovered to disclose information by gaining access to the response. The risk of information disclosure is dramatically increased when the target site is vulnerable to XSS, because XSS can be used as a platform for CSRF, allowing the attack to operate within the bounds of the same-origin policy.</p>",
+					"instances":[ 
+						{
+							"id": "797",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/captcha/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/captcha\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<form action=\"#\" method=\"POST\" style=\"display:none;\">",
+							"otherinfo": "No known Anti-CSRF token [anticsrf, CSRFToken, __RequestVerificationToken, csrfmiddlewaretoken, authenticity_token, OWASP_CSRFTOKEN, anoncsrf, csrf_token, _csrf, _csrfSecret, __csrf_magic, CSRF, _token, _csrf_token, _csrfToken] was found in the following HTML form: [Form 1: \"Change\" \"password_conf\" \"password_new\" \"recaptcha_response_field\" \"step\" ]."
+						},
+						{
+							"id": "768",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/captcha/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/captcha\/index.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<form action=\"#\" method=\"POST\" style=\"display:none;\">",
+							"otherinfo": "No known Anti-CSRF token [anticsrf, CSRFToken, __RequestVerificationToken, csrfmiddlewaretoken, authenticity_token, OWASP_CSRFTOKEN, anoncsrf, csrf_token, _csrf, _csrfSecret, __csrf_magic, CSRF, _token, _csrf_token, _csrfToken] was found in the following HTML form: [Form 1: \"Change\" \"password_conf\" \"password_new\" \"recaptcha_response_field\" \"step\" ]."
+						},
+						{
+							"id": "787",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/upload/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/upload\/index.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<form enctype=\"multipart/form-data\" action=\"#\" method=\"POST\">",
+							"otherinfo": "No known Anti-CSRF token [anticsrf, CSRFToken, __RequestVerificationToken, csrfmiddlewaretoken, authenticity_token, OWASP_CSRFTOKEN, anoncsrf, csrf_token, _csrf, _csrfSecret, __csrf_magic, CSRF, _token, _csrf_token, _csrfToken] was found in the following HTML form: [Form 1: \"MAX_FILE_SIZE\" \"Upload\" \"uploaded\" ]."
+						}
+					],
+					"count": "3",
+					"systemic": true,
+					"solution": "<p>Phase: Architecture and Design</p><p>Use a vetted library or framework that does not allow this weakness to occur or provides constructs that make this weakness easier to avoid.</p><p>For example, use anti-CSRF packages such as the OWASP CSRFGuard.</p><p></p><p>Phase: Implementation</p><p>Ensure that your application is free of cross-site scripting issues, because most CSRF defenses can be bypassed using attacker-controlled script.</p><p></p><p>Phase: Architecture and Design</p><p>Generate a unique nonce for each form, place the nonce into the form, and verify the nonce upon receipt of the form. Be sure that the nonce is not predictable (CWE-330).</p><p>Note that this can be bypassed using XSS.</p><p></p><p>Identify especially dangerous operations. When the user performs a dangerous operation, send a separate confirmation request to ensure that the user intended to perform that operation.</p><p>Note that this can be bypassed using XSS.</p><p></p><p>Use the ESAPI Session Management control.</p><p>This control includes a component for CSRF.</p><p></p><p>Do not use the GET method for any request that triggers a state change.</p><p></p><p>Phase: Implementation</p><p>Check the HTTP Referer header to see if the request originated from an expected page. This could break legitimate functionality, because users or proxies may have disabled sending the Referer for privacy reasons.</p>",
+					"otherinfo": "<p>No known Anti-CSRF token [anticsrf, CSRFToken, __RequestVerificationToken, csrfmiddlewaretoken, authenticity_token, OWASP_CSRFTOKEN, anoncsrf, csrf_token, _csrf, _csrfSecret, __csrf_magic, CSRF, _token, _csrf_token, _csrfToken] was found in the following HTML form: [Form 1: \"Change\" \"password_conf\" \"password_new\" \"recaptcha_response_field\" \"step\" ].</p>",
+					"reference": "<p>https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html</p><p>https://cwe.mitre.org/data/definitions/352.html</p>",
+					"cweid": "352",
+					"wascid": "9",
+					"sourceid": "431"
+				},
+				{
+					"pluginid": "90022",
+					"alertRef": "90022",
+					"alert": "Application Error Disclosure",
+					"name": "Application Error Disclosure",
+					"riskcode": "2",
+					"confidence": "2",
+					"riskdesc": "Medium (Medium)",
+					"desc": "<p>This page contains an error/warning message that may disclose sensitive information like the location of the file that produced the unhandled exception. This information can be used to launch further attacks against the web application. The alert could be a false positive if the error message is found inside a documentation page.</p>",
+					"instances":[ 
+						{
+							"id": "1492",
+							"uri": "http://127.0.0.1:8081/docs/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/docs\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "1750",
+							"uri": "http://127.0.0.1:8081/docs/?C=N;O=D",
+							"nodeName": "http:\/\/127.0.0.1:8081\/docs\/ (C)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "464",
+							"uri": "http://127.0.0.1:8081/dvwa/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "518",
+							"uri": "http://127.0.0.1:8081/dvwa/?C=M;O=A",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/ (C)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "410",
+							"uri": "http://127.0.0.1:8081/dvwa/css/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/css\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "414",
+							"uri": "http://127.0.0.1:8081/dvwa/css/?C=N;O=D",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/css\/ (C)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "430",
+							"uri": "http://127.0.0.1:8081/dvwa/images/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/images\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "405",
+							"uri": "http://127.0.0.1:8081/dvwa/images/?C=S;O=A",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/images\/ (C)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "534",
+							"uri": "http://127.0.0.1:8081/dvwa/includes/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/includes\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "774",
+							"uri": "http://127.0.0.1:8081/dvwa/includes/?C=D;O=A",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/includes\/ (C)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "839",
+							"uri": "http://127.0.0.1:8081/dvwa/includes/DBMS/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/includes\/DBMS\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "890",
+							"uri": "http://127.0.0.1:8081/dvwa/includes/DBMS/?C=N;O=D",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/includes\/DBMS\/ (C)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "522",
+							"uri": "http://127.0.0.1:8081/dvwa/js/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/js\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "562",
+							"uri": "http://127.0.0.1:8081/dvwa/js/?C=M;O=A",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/js\/ (C)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "1666",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						},
+						{
+							"id": "1817",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/?C=N;O=D",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/ (C)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Parent Directory",
+							"otherinfo": ""
+						}
+					],
+					"count": "16",
+					"systemic": false,
+					"solution": "<p>Review the source code of this page. Implement custom error pages. Consider implementing a mechanism to provide a unique error reference/identifier to the client (browser) while logging the details on the server side and not exposing them to the user.</p>",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "550",
+					"wascid": "13",
+					"sourceid": "781"
+				},
+				{
+					"pluginid": "10038",
+					"alertRef": "10038-1",
+					"alert": "Content Security Policy (CSP) Header Not Set",
+					"name": "Content Security Policy (CSP) Header Not Set",
+					"riskcode": "2",
+					"confidence": "3",
+					"riskdesc": "Medium (High)",
+					"desc": "<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page \u2014 covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.</p>",
+					"instances":[ 
+						{
+							"id": "16",
+							"uri": "http://127.0.0.1:8081/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "17",
+							"uri": "http://127.0.0.1:8081/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/index.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "11",
+							"uri": "http://127.0.0.1:8081/sitemap.xml",
+							"nodeName": "http:\/\/127.0.0.1:8081\/sitemap.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": true,
+					"solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to set the Content-Security-Policy header.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP</p><p>https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html</p><p>https://www.w3.org/TR/CSP/</p><p>https://w3c.github.io/webappsec-csp/</p><p>https://web.dev/articles/csp</p><p>https://caniuse.com/#feat=contentsecuritypolicy</p><p>https://content-security-policy.com/</p>",
+					"cweid": "693",
+					"wascid": "15",
+					"sourceid": "24"
+				},
+				{
+					"pluginid": "10033",
+					"alertRef": "10033",
+					"alert": "Directory Browsing",
+					"name": "Directory Browsing",
+					"riskcode": "2",
+					"confidence": "2",
+					"riskdesc": "Medium (Medium)",
+					"desc": "<p>It is possible to view a listing of the directory contents. Directory listings may reveal hidden scripts, include files, backup source files, etc., which can be accessed to reveal sensitive information.</p>",
+					"instances":[ 
+						{
+							"id": "447",
+							"uri": "http://127.0.0.1:8081/dvwa/css/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/css\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<title>Index of /dvwa/css</title>",
+							"otherinfo": "Web server identified: Apache 2"
+						},
+						{
+							"id": "440",
+							"uri": "http://127.0.0.1:8081/dvwa/css/?C=N;O=D",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/css\/ (C)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<title>Index of /dvwa/css</title>",
+							"otherinfo": "Web server identified: Apache 2"
+						},
+						{
+							"id": "438",
+							"uri": "http://127.0.0.1:8081/dvwa/images/?C=S;O=A",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/images\/ (C)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<title>Index of /dvwa/images</title>",
+							"otherinfo": "Web server identified: Apache 2"
+						}
+					],
+					"count": "3",
+					"systemic": true,
+					"solution": "<p>Configure the web server to disable directory browsing.</p>",
+					"otherinfo": "<p>Web server identified: Apache 2</p>",
+					"reference": "<p>https://cwe.mitre.org/data/definitions/548.html</p>",
+					"cweid": "548",
+					"wascid": "16",
+					"sourceid": "248"
+				},
+				{
+					"pluginid": "10106",
+					"alertRef": "10106",
+					"alert": "HTTP Only Site",
+					"name": "HTTP Only Site",
+					"riskcode": "2",
+					"confidence": "2",
+					"riskdesc": "Medium (Medium)",
+					"desc": "<p>The site is only served under HTTP and not HTTPS.</p>",
+					"instances":[ 
+						{
+							"id": "2173",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/",
+							"nodeName": "https:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "Failed to connect.\nZAP attempted to connect via: https://127.0.0.1:8081/vulnerabilities/xss_s/"
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Configure your web or application server to use SSL (https).</p>",
+					"otherinfo": "<p>Failed to connect.</p><p>ZAP attempted to connect via: https://127.0.0.1:8081/vulnerabilities/xss_s/</p>",
+					"reference": "<p>https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html</p><p>https://letsencrypt.org/</p>",
+					"cweid": "311",
+					"wascid": "4",
+					"sourceid": "807"
+				},
+				{
+					"pluginid": "10020",
+					"alertRef": "10020-1",
+					"alert": "Missing Anti-clickjacking Header",
+					"name": "Missing Anti-clickjacking Header",
+					"riskcode": "2",
+					"confidence": "2",
+					"riskdesc": "Medium (Medium)",
+					"desc": "<p>The response does not protect against 'ClickJacking' attacks. It should include either Content-Security-Policy with 'frame-ancestors' directive or X-Frame-Options.</p>",
+					"instances":[ 
+						{
+							"id": "10",
+							"uri": "http://127.0.0.1:8081/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/",
+							"method": "GET",
+							"param": "x-frame-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "9",
+							"uri": "http://127.0.0.1:8081/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/index.php",
+							"method": "GET",
+							"param": "x-frame-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						},
+						{
+							"id": "28",
+							"uri": "http://127.0.0.1:8081/login.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/login.php",
+							"method": "GET",
+							"param": "x-frame-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": true,
+					"solution": "<p>Modern Web browsers support the Content-Security-Policy and X-Frame-Options HTTP headers. Ensure one of them is set on all web pages returned by your site/app.</p><p>If you expect the page to be framed only by pages on your server (e.g. it's part of a FRAMESET) then you'll want to use SAMEORIGIN, otherwise if you never expect the page to be framed, you should use DENY. Alternatively consider implementing Content Security Policy's \"frame-ancestors\" directive.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options</p>",
+					"cweid": "1021",
+					"wascid": "15",
+					"sourceid": "24"
+				},
+				{
+					"pluginid": "90003",
+					"alertRef": "90003",
+					"alert": "Sub Resource Integrity Attribute Missing",
+					"name": "Sub Resource Integrity Attribute Missing",
+					"riskcode": "2",
+					"confidence": "3",
+					"riskdesc": "Medium (High)",
+					"desc": "<p>The integrity attribute is missing on a script or link tag served by an external server. The integrity tag prevents an attacker who have gained access to this server from injecting a malicious content.</p>",
+					"instances":[ 
+						{
+							"id": "166",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/captcha/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/captcha\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<script type=\"text/javascript\" src=\"http://www.google.com/recaptcha/api/challenge?k=\"></script>",
+							"otherinfo": ""
+						},
+						{
+							"id": "274",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/captcha/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/captcha\/index.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<script type=\"text/javascript\" src=\"http://www.google.com/recaptcha/api/challenge?k=\"></script>",
+							"otherinfo": ""
+						}
+					],
+					"count": "2",
+					"systemic": true,
+					"solution": "<p>Provide a valid integrity attribute to the tag.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity</p>",
+					"cweid": "345",
+					"wascid": "15",
+					"sourceid": "70"
+				},
+				{
+					"pluginid": "90022",
+					"alertRef": "90022",
+					"alert": "Application Error Disclosure",
+					"name": "Application Error Disclosure",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "Low (Medium)",
+					"desc": "<p>This page contains an error/warning message that may disclose sensitive information like the location of the file that produced the unhandled exception. This information can be used to launch further attacks against the web application. The alert could be a false positive if the error message is found inside a documentation page.</p>",
+					"instances":[ 
+						{
+							"id": "929",
+							"uri": "http://127.0.0.1:8081/dvwa/includes/DBMS/MySQL.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/includes\/DBMS\/MySQL.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "HTTP/1.0 500 Internal Server Error",
+							"otherinfo": ""
+						},
+						{
+							"id": "937",
+							"uri": "http://127.0.0.1:8081/dvwa/includes/DBMS/PGSQL.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/dvwa\/includes\/DBMS\/PGSQL.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "HTTP/1.0 500 Internal Server Error",
+							"otherinfo": ""
+						}
+					],
+					"count": "2",
+					"systemic": false,
+					"solution": "<p>Review the source code of this page. Implement custom error pages. Consider implementing a mechanism to provide a unique error reference/identifier to the client (browser) while logging the details on the server side and not exposing them to the user.</p>",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "550",
+					"wascid": "13",
+					"sourceid": "491"
+				},
+				{
+					"pluginid": "10010",
+					"alertRef": "10010",
+					"alert": "Cookie No HttpOnly Flag",
+					"name": "Cookie No HttpOnly Flag",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "Low (Medium)",
+					"desc": "<p>A cookie has been set without the HttpOnly flag, which means that the cookie can be accessed by JavaScript. If a malicious script can be run on this page then the cookie will be accessible and can be transmitted to another site. If this is a session cookie then session hijacking may be possible.</p>",
+					"instances":[ 
+						{
+							"id": "1431",
+							"uri": "http://127.0.0.1:8081/instructions.php?doc=readme",
+							"nodeName": "http:\/\/127.0.0.1:8081\/instructions.php (doc)",
+							"method": "GET",
+							"param": "PHPSESSID",
+							"attack": "",
+							"evidence": "Set-Cookie: PHPSESSID",
+							"otherinfo": ""
+						},
+						{
+							"id": "39",
+							"uri": "http://127.0.0.1:8081/login.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/login.php",
+							"method": "GET",
+							"param": "PHPSESSID",
+							"attack": "",
+							"evidence": "Set-Cookie: PHPSESSID",
+							"otherinfo": ""
+						},
+						{
+							"id": "1384",
+							"uri": "http://127.0.0.1:8081/phpinfo.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/phpinfo.php",
+							"method": "GET",
+							"param": "PHPSESSID",
+							"attack": "",
+							"evidence": "Set-Cookie: PHPSESSID",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": true,
+					"solution": "<p>Ensure that the HttpOnly flag is set for all cookies.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://owasp.org/www-community/HttpOnly</p>",
+					"cweid": "1004",
+					"wascid": "13",
+					"sourceid": "735"
+				},
+				{
+					"pluginid": "10054",
+					"alertRef": "10054-1",
+					"alert": "Cookie without SameSite Attribute",
+					"name": "Cookie without SameSite Attribute",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "Low (Medium)",
+					"desc": "<p>A cookie has been set without the SameSite attribute, which means that the cookie can be sent as a result of a 'cross-site' request. The SameSite attribute is an effective counter measure to cross-site request forgery, cross-site script inclusion, and timing attacks.</p>",
+					"instances":[ 
+						{
+							"id": "40",
+							"uri": "http://127.0.0.1:8081/login.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/login.php",
+							"method": "GET",
+							"param": "PHPSESSID",
+							"attack": "",
+							"evidence": "Set-Cookie: PHPSESSID",
+							"otherinfo": ""
+						},
+						{
+							"id": "44",
+							"uri": "http://127.0.0.1:8081/login.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/login.php",
+							"method": "GET",
+							"param": "security",
+							"attack": "",
+							"evidence": "Set-Cookie: security",
+							"otherinfo": ""
+						},
+						{
+							"id": "1399",
+							"uri": "http://127.0.0.1:8081/phpinfo.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/phpinfo.php",
+							"method": "GET",
+							"param": "PHPSESSID",
+							"attack": "",
+							"evidence": "Set-Cookie: PHPSESSID",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": true,
+					"solution": "<p>Ensure that the SameSite attribute is set to either 'lax' or ideally 'strict' for all cookies.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-same-site</p>",
+					"cweid": "1275",
+					"wascid": "13",
+					"sourceid": "38"
+				},
+				{
+					"pluginid": "10017",
+					"alertRef": "10017",
+					"alert": "Cross-Domain JavaScript Source File Inclusion",
+					"name": "Cross-Domain JavaScript Source File Inclusion",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "Low (Medium)",
+					"desc": "<p>The page includes one or more script files from a third-party domain.</p>",
+					"instances":[ 
+						{
+							"id": "122",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/captcha/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/captcha\/",
+							"method": "GET",
+							"param": "http://www.google.com/recaptcha/api/challenge?k=",
+							"attack": "",
+							"evidence": "<script type=\"text/javascript\" src=\"http://www.google.com/recaptcha/api/challenge?k=\"></script>",
+							"otherinfo": ""
+						},
+						{
+							"id": "226",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/captcha/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/captcha\/index.php",
+							"method": "GET",
+							"param": "http://www.google.com/recaptcha/api/challenge?k=",
+							"attack": "",
+							"evidence": "<script type=\"text/javascript\" src=\"http://www.google.com/recaptcha/api/challenge?k=\"></script>",
+							"otherinfo": ""
+						}
+					],
+					"count": "2",
+					"systemic": true,
+					"solution": "<p>Ensure JavaScript source files are loaded from only trusted sources, and the sources can't be controlled by end users of the application.</p>",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "829",
+					"wascid": "15",
+					"sourceid": "70"
+				},
+				{
+					"pluginid": "10009",
+					"alertRef": "10009",
+					"alert": "In Page Banner Information Leak",
+					"name": "In Page Banner Information Leak",
+					"riskcode": "1",
+					"confidence": "3",
+					"riskdesc": "Low (High)",
+					"desc": "<p>The server returned a version banner string in the response content. Such information leaks may allow attackers to further target specific issues impacting the product and version in use.</p>",
+					"instances":[ 
+						{
+							"id": "1357",
+							"uri": "http://127.0.0.1:8081/DTD",
+							"nodeName": "http:\/\/127.0.0.1:8081\/DTD",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Apache/2.4.10",
+							"otherinfo": "There is a chance that the highlight in the finding is on a value in the headers, versus the actual matched string in the response body."
+						},
+						{
+							"id": "256",
+							"uri": "http://127.0.0.1:8081/DTD/xhtml1-transitional.dtd",
+							"nodeName": "http:\/\/127.0.0.1:8081\/DTD\/xhtml1-transitional.dtd",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Apache/2.4.10",
+							"otherinfo": "There is a chance that the highlight in the finding is on a value in the headers, versus the actual matched string in the response body."
+						},
+						{
+							"id": "12",
+							"uri": "http://127.0.0.1:8081/sitemap.xml",
+							"nodeName": "http:\/\/127.0.0.1:8081\/sitemap.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Apache/2.4.10",
+							"otherinfo": "There is a chance that the highlight in the finding is on a value in the headers, versus the actual matched string in the response body."
+						}
+					],
+					"count": "3",
+					"systemic": true,
+					"solution": "<p>Configure the server to prevent such information leaks. For example:</p><p>Under Tomcat this is done via the \"server\" directive and implementation of custom error pages.</p><p>Under Apache this is done via the \"ServerSignature\" and \"ServerTokens\" directives.</p>",
+					"otherinfo": "<p>There is a chance that the highlight in the finding is on a value in the headers, versus the actual matched string in the response body.</p>",
+					"reference": "<p>https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/</p>",
+					"cweid": "497",
+					"wascid": "13",
+					"sourceid": "695"
+				},
+				{
+					"pluginid": "10023",
+					"alertRef": "10023",
+					"alert": "Information Disclosure - Debug Error Messages",
+					"name": "Information Disclosure - Debug Error Messages",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "Low (Medium)",
+					"desc": "<p>The response appeared to contain common error messages returned by platforms such as ASP.NET, and Web-servers such as IIS and Apache. You can configure the list of common debug messages.</p>",
+					"instances":[ 
+						{
+							"id": "140",
+							"uri": "http://127.0.0.1:8081/instructions.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/instructions.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "PHP warning",
+							"otherinfo": ""
+						},
+						{
+							"id": "191",
+							"uri": "http://127.0.0.1:8081/instructions.php?doc=readme",
+							"nodeName": "http:\/\/127.0.0.1:8081\/instructions.php (doc)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "PHP warning",
+							"otherinfo": ""
+						}
+					],
+					"count": "2",
+					"systemic": false,
+					"solution": "<p>Disable debugging messages before pushing to production.</p>",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "1295",
+					"wascid": "13",
+					"sourceid": "49"
+				},
+				{
+					"pluginid": "2",
+					"alertRef": "2",
+					"alert": "Private IP Disclosure",
+					"name": "Private IP Disclosure",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "Low (Medium)",
+					"desc": "<p>A private IP (such as 10.x.x.x, 172.x.x.x, 192.168.x.x) or an Amazon EC2 private hostname (for example, ip-10-0-56-78) has been found in the HTTP response body. This information might be helpful for further attacks targeting internal systems.</p>",
+					"instances":[ 
+						{
+							"id": "199",
+							"uri": "http://127.0.0.1:8081/phpinfo.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/phpinfo.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "172.17.0.2:80",
+							"otherinfo": "172.17.0.2:80\n172.17.0.2\n172.17.0.1\n172.17.0.2\n172.17.0.1\n"
+						},
+						{
+							"id": "184",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/fi/?page=file3.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/fi\/ (page)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "172.17.0.1",
+							"otherinfo": "172.17.0.1\n"
+						}
+					],
+					"count": "2",
+					"systemic": false,
+					"solution": "<p>Remove the private IP address from the HTTP response body. For comments, use JSP/ASP/PHP comment instead of HTML/JavaScript comment which can be seen by client browsers.</p>",
+					"otherinfo": "<p>172.17.0.2:80</p><p>172.17.0.2</p><p>172.17.0.1</p><p>172.17.0.2</p><p>172.17.0.1</p><p></p>",
+					"reference": "<p>https://datatracker.ietf.org/doc/html/rfc1918</p>",
+					"cweid": "497",
+					"wascid": "13",
+					"sourceid": "84"
+				},
+				{
+					"pluginid": "10036",
+					"alertRef": "10036-2",
+					"alert": "Server Leaks Version Information via \"Server\" HTTP Response Header Field",
+					"name": "Server Leaks Version Information via \"Server\" HTTP Response Header Field",
+					"riskcode": "1",
+					"confidence": "3",
+					"riskdesc": "Low (High)",
+					"desc": "<p>The web/application server is leaking version information via the \"Server\" HTTP response header. Access to such information may facilitate attackers identifying other vulnerabilities your web/application server is subject to.</p>",
+					"instances":[ 
+						{
+							"id": "18",
+							"uri": "http://127.0.0.1:8081/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Apache/2.4.10 (Debian)",
+							"otherinfo": ""
+						},
+						{
+							"id": "13",
+							"uri": "http://127.0.0.1:8081/robots.txt",
+							"nodeName": "http:\/\/127.0.0.1:8081\/robots.txt",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Apache/2.4.10 (Debian)",
+							"otherinfo": ""
+						},
+						{
+							"id": "15",
+							"uri": "http://127.0.0.1:8081/sitemap.xml",
+							"nodeName": "http:\/\/127.0.0.1:8081\/sitemap.xml",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "Apache/2.4.10 (Debian)",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": true,
+					"solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to suppress the \"Server\" header or provide generic details.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://httpd.apache.org/docs/current/mod/core.html#servertokens</p><p>https://learn.microsoft.com/en-us/previous-versions/msp-n-p/ff648552(v=pandp.10)</p><p>https://www.troyhunt.com/shhh-dont-let-your-response-headers/</p>",
+					"cweid": "497",
+					"wascid": "13",
+					"sourceid": "24"
+				},
+				{
+					"pluginid": "10096",
+					"alertRef": "10096",
+					"alert": "Timestamp Disclosure - Unix",
+					"name": "Timestamp Disclosure - Unix",
+					"riskcode": "1",
+					"confidence": "1",
+					"riskdesc": "Low (Low)",
+					"desc": "<p>A timestamp was disclosed by the application/web server. - Unix</p>",
+					"instances":[ 
+						{
+							"id": "253",
+							"uri": "http://127.0.0.1:8081/phpinfo.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/phpinfo.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "1794968224",
+							"otherinfo": "1794968224, which evaluates to: 2026-11-18 07:47:04."
+						}
+					],
+					"count": "1",
+					"systemic": true,
+					"solution": "<p>Manually confirm that the timestamp data is not sensitive, and that the data cannot be aggregated to disclose exploitable patterns.</p>",
+					"otherinfo": "<p>1794968224, which evaluates to: 2026-11-18 07:47:04.</p>",
+					"reference": "<p>https://cwe.mitre.org/data/definitions/200.html</p>",
+					"cweid": "497",
+					"wascid": "13",
+					"sourceid": "84"
+				},
+				{
+					"pluginid": "10021",
+					"alertRef": "10021",
+					"alert": "X-Content-Type-Options Header Missing",
+					"name": "X-Content-Type-Options Header Missing",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "Low (Medium)",
+					"desc": "<p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p>",
+					"instances":[ 
+						{
+							"id": "20",
+							"uri": "http://127.0.0.1:8081/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/",
+							"method": "GET",
+							"param": "x-content-type-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
+						},
+						{
+							"id": "21",
+							"uri": "http://127.0.0.1:8081/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/index.php",
+							"method": "GET",
+							"param": "x-content-type-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
+						},
+						{
+							"id": "14",
+							"uri": "http://127.0.0.1:8081/robots.txt",
+							"nodeName": "http:\/\/127.0.0.1:8081\/robots.txt",
+							"method": "GET",
+							"param": "x-content-type-options",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
+						}
+					],
+					"count": "3",
+					"systemic": true,
+					"solution": "<p>Ensure that the application/web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to 'nosniff' for all web pages.</p><p>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application/web server to not perform MIME-sniffing.</p>",
+					"otherinfo": "<p>This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.</p><p>At \"High\" threshold this scan rule will not alert on client or server error responses.</p>",
+					"reference": "<p>https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/gg622941(v=vs.85)</p><p>https://owasp.org/www-community/Security_Headers</p>",
+					"cweid": "693",
+					"wascid": "15",
+					"sourceid": "24"
+				},
+				{
+					"pluginid": "10111",
+					"alertRef": "10111",
+					"alert": "Authentication Request Identified",
+					"name": "Authentication Request Identified",
+					"riskcode": "0",
+					"confidence": "1",
+					"riskdesc": "Informational (Low)",
+					"desc": "<p>The given request has been identified as an authentication request. The 'Other Info' field contains a set of key=value lines which identify any relevant fields. If the request is in a context which has an Authentication Method set to \"Auto-Detect\" then this rule will change the authentication to match the request identified.</p>",
+					"instances":[ 
+						{
+							"id": "160",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/brute/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/brute\/ ()(Login,password,user_token,username)",
+							"method": "POST",
+							"param": "Login",
+							"attack": "",
+							"evidence": "password",
+							"otherinfo": "userParam=Login\nuserValue=Login\npasswordParam=password\nreferer=http://127.0.0.1:8081/vulnerabilities/brute/\ncsrfToken=user_token"
+						},
+						{
+							"id": "250",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/brute/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/brute\/index.php ()(Login,password,user_token,username)",
+							"method": "POST",
+							"param": "Login",
+							"attack": "",
+							"evidence": "password",
+							"otherinfo": "userParam=Login\nuserValue=Login\npasswordParam=password\nreferer=http://127.0.0.1:8081/vulnerabilities/brute/index.php\ncsrfToken=user_token"
+						},
+						{
+							"id": "154",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/captcha/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/captcha\/ ()(Change,password_conf,password_current,password_new,recaptcha_challenge_field,recaptcha_response_field,step,user_token)",
+							"method": "POST",
+							"param": "user_token",
+							"attack": "",
+							"evidence": "password_conf",
+							"otherinfo": "userParam=user_token\nuserValue=ec5dd9ee1eb06aebea45a8ca67f91913\npasswordParam=password_conf\nreferer=http://127.0.0.1:8081/vulnerabilities/captcha/\ncsrfToken=user_token"
+						},
+						{
+							"id": "235",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/captcha/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/captcha\/index.php ()(Change,password_conf,password_current,password_new,recaptcha_challenge_field,recaptcha_response_field,step,user_token)",
+							"method": "POST",
+							"param": "user_token",
+							"attack": "",
+							"evidence": "password_conf",
+							"otherinfo": "userParam=user_token\nuserValue=0471904d51dd122b57899d7605125aef\npasswordParam=password_conf\nreferer=http://127.0.0.1:8081/vulnerabilities/captcha/index.php\ncsrfToken=user_token"
+						},
+						{
+							"id": "397",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/brute/?Login=Login&password=ZAP&username=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/brute\/ (Login,password,username)",
+							"method": "GET",
+							"param": "Login",
+							"attack": "",
+							"evidence": "password",
+							"otherinfo": "userParam=Login\nuserValue=Login\npasswordParam=password\nreferer=http://127.0.0.1:8081/vulnerabilities/brute/"
+						},
+						{
+							"id": "849",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/brute/index.php?Login=Login&password=ZAP&username=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/brute\/index.php (Login,password,username)",
+							"method": "GET",
+							"param": "Login",
+							"attack": "",
+							"evidence": "password",
+							"otherinfo": "userParam=Login\nuserValue=Login\npasswordParam=password\nreferer=http://127.0.0.1:8081/vulnerabilities/brute/index.php"
+						},
+						{
+							"id": "0",
+							"uri": "http://127.0.0.1:8081/login.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/login.php ()(Login,password,user_token,username)",
+							"method": "POST",
+							"param": "Login",
+							"attack": "",
+							"evidence": "password",
+							"otherinfo": "userParam=Login\nuserValue=Login\npasswordParam=password"
+						}
+					],
+					"count": "7",
+					"systemic": false,
+					"solution": "<p>This is an informational alert rather than a vulnerability and so there is nothing to fix.</p>",
+					"otherinfo": "<p>userParam=Login</p><p>userValue=Login</p><p>passwordParam=password</p><p>referer=http://127.0.0.1:8081/vulnerabilities/brute/</p><p>csrfToken=user_token</p>",
+					"reference": "<p>https://www.zaproxy.org/docs/desktop/addons/authentication-helper/auth-req-id/</p>",
+					"cweid": "-1",
+					"wascid": "-1",
+					"sourceid": "108"
+				},
+				{
+					"pluginid": "10024",
+					"alertRef": "10024",
+					"alert": "Information Disclosure - Sensitive Information in URL",
+					"name": "Information Disclosure - Sensitive Information in URL",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>The request appeared to contain sensitive information leaked in the URL. This can violate PCI and most organizational compliance policies. You can configure the list of strings for this check to add or remove values specific to your environment.</p>",
+					"instances":[ 
+						{
+							"id": "178",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/csrf/?Change=Change&password_conf=ZAP&password_current=ZAP&password_new=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/csrf\/ (Change,password_conf,password_current,password_new)",
+							"method": "GET",
+							"param": "password_conf",
+							"attack": "",
+							"evidence": "password_conf",
+							"otherinfo": "The URL contains potentially sensitive information. The following string was found via the pattern: pass\npassword_conf"
+						},
+						{
+							"id": "196",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/csrf/?Change=Change&password_conf=ZAP&password_current=ZAP&password_new=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/csrf\/ (Change,password_conf,password_current,password_new)",
+							"method": "GET",
+							"param": "password_current",
+							"attack": "",
+							"evidence": "password_current",
+							"otherinfo": "The URL contains potentially sensitive information. The following string was found via the pattern: pass\npassword_current"
+						},
+						{
+							"id": "210",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/csrf/?Change=Change&password_conf=ZAP&password_current=ZAP&password_new=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/csrf\/ (Change,password_conf,password_current,password_new)",
+							"method": "GET",
+							"param": "password_new",
+							"attack": "",
+							"evidence": "password_new",
+							"otherinfo": "The URL contains potentially sensitive information. The following string was found via the pattern: pass\npassword_new"
+						}
+					],
+					"count": "3",
+					"systemic": true,
+					"solution": "<p>Do not pass sensitive information in URIs.</p>",
+					"otherinfo": "<p>The URL contains potentially sensitive information. The following string was found via the pattern: pass</p><p>password_conf</p>",
+					"reference": "",
+					"cweid": "598",
+					"wascid": "13",
+					"sourceid": "114"
+				},
+				{
+					"pluginid": "10109",
+					"alertRef": "10109",
+					"alert": "Modern Web Application",
+					"name": "Modern Web Application",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>The application appears to be a modern web application. If you need to explore it automatically then the Ajax Spider may well be more effective than the standard one.</p>",
+					"instances":[ 
+						{
+							"id": "207",
+							"uri": "http://127.0.0.1:8081/phpinfo.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/phpinfo.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<a name=\"module_apache2handler\">apache2handler</a>",
+							"otherinfo": "Links have been found that do not have traditional href attributes, which is an indication that this is a modern web application."
+						},
+						{
+							"id": "136",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/captcha/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/captcha\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<noscript>\n  \t\t<iframe src=\"http://www.google.com/recaptcha/api/noscript?k=\" height=\"300\" width=\"500\" frameborder=\"0\"></iframe><br/>\n  \t\t<textarea name=\"recaptcha_challenge_field\" rows=\"3\" cols=\"40\"></textarea>\n  \t\t<input type=\"hidden\" name=\"recaptcha_response_field\" value=\"manual_challenge\"/>\n\t</noscript>",
+							"otherinfo": "A noScript tag has been found, which is an indication that the application works differently with JavaScript enabled compared to when it is not."
+						},
+						{
+							"id": "247",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/captcha/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/captcha\/index.php",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<noscript>\n  \t\t<iframe src=\"http://www.google.com/recaptcha/api/noscript?k=\" height=\"300\" width=\"500\" frameborder=\"0\"></iframe><br/>\n  \t\t<textarea name=\"recaptcha_challenge_field\" rows=\"3\" cols=\"40\"></textarea>\n  \t\t<input type=\"hidden\" name=\"recaptcha_response_field\" value=\"manual_challenge\"/>\n\t</noscript>",
+							"otherinfo": "A noScript tag has been found, which is an indication that the application works differently with JavaScript enabled compared to when it is not."
+						}
+					],
+					"count": "3",
+					"systemic": true,
+					"solution": "<p>This is an informational alert and so no changes are required.</p>",
+					"otherinfo": "<p>Links have been found that do not have traditional href attributes, which is an indication that this is a modern web application.</p>",
+					"reference": "",
+					"cweid": "-1",
+					"wascid": "-1",
+					"sourceid": "84"
+				},
+				{
+					"pluginid": "10112",
+					"alertRef": "10112",
+					"alert": "Session Management Response Identified",
+					"name": "Session Management Response Identified",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>The given response has been identified as containing a session management token. The 'Other Info' field contains a set of header tokens that can be used in the Header Based Session Management Method. If the request is in a context which has a Session Management Method set to \"Auto-Detect\" then this rule will change the session management to use the tokens identified.</p>",
+					"instances":[ 
+						{
+							"id": "1377",
+							"uri": "http://127.0.0.1:8081/instructions.php?doc=readme",
+							"nodeName": "http:\/\/127.0.0.1:8081\/instructions.php (doc)",
+							"method": "GET",
+							"param": "security",
+							"attack": "",
+							"evidence": "security",
+							"otherinfo": "cookie:security\ncookie:PHPSESSID"
+						},
+						{
+							"id": "1",
+							"uri": "http://127.0.0.1:8081/login.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/login.php",
+							"method": "GET",
+							"param": "security",
+							"attack": "",
+							"evidence": "security",
+							"otherinfo": "cookie:security\ncookie:PHPSESSID"
+						},
+						{
+							"id": "1371",
+							"uri": "http://127.0.0.1:8081/phpinfo.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/phpinfo.php",
+							"method": "GET",
+							"param": "security",
+							"attack": "",
+							"evidence": "security",
+							"otherinfo": "cookie:security\ncookie:PHPSESSID"
+						},
+						{
+							"id": "5",
+							"uri": "http://127.0.0.1:8081/login.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/login.php",
+							"method": "GET",
+							"param": "PHPSESSID",
+							"attack": "",
+							"evidence": "PHPSESSID",
+							"otherinfo": "cookie:PHPSESSID"
+						},
+						{
+							"id": "4",
+							"uri": "http://127.0.0.1:8081/login.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/login.php",
+							"method": "GET",
+							"param": "security",
+							"attack": "",
+							"evidence": "security",
+							"otherinfo": "cookie:security"
+						}
+					],
+					"count": "5",
+					"systemic": false,
+					"solution": "<p>This is an informational alert rather than a vulnerability and so there is nothing to fix.</p>",
+					"otherinfo": "<p>cookie:security</p><p>cookie:PHPSESSID</p>",
+					"reference": "<p>https://www.zaproxy.org/docs/desktop/addons/authentication-helper/session-mgmt-id/</p>",
+					"cweid": "-1",
+					"wascid": "-1",
+					"sourceid": "735"
+				},
+				{
+					"pluginid": "10031",
+					"alertRef": "10031",
+					"alert": "User Controllable HTML Element Attribute (Potential XSS)",
+					"name": "User Controllable HTML Element Attribute (Potential XSS)",
+					"riskcode": "0",
+					"confidence": "1",
+					"riskdesc": "Informational (Low)",
+					"desc": "<p>This check looks at user-supplied input in query string parameters and POST data to identify where certain HTML attribute values might be controlled. This provides hot-spot detection for XSS (cross-site scripting) that will require further review by a security analyst to determine exploitability.</p>",
+					"instances":[ 
+						{
+							"id": "810",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/brute/?Login=Login&password=ZAP&username=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/brute\/ (Login,password,username)",
+							"method": "GET",
+							"param": "Login",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/brute/?Login=Login&password=ZAP&username=ZAP\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nLogin=Login\n\nThe user-controlled value was:\nlogin"
+						},
+						{
+							"id": "914",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/brute/index.php?Login=Login&password=ZAP&username=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/brute\/index.php (Login,password,username)",
+							"method": "GET",
+							"param": "Login",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/brute/index.php?Login=Login&password=ZAP&username=ZAP\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nLogin=Login\n\nThe user-controlled value was:\nlogin"
+						},
+						{
+							"id": "1036",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/csrf/?Change=Change&password_conf=ZAP&password_current=ZAP&password_new=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/csrf\/ (Change,password_conf,password_current,password_new)",
+							"method": "GET",
+							"param": "Change",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/csrf/?Change=Change&password_conf=ZAP&password_current=ZAP&password_new=ZAP\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nChange=Change\n\nThe user-controlled value was:\nchange"
+						},
+						{
+							"id": "1037",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/csrf/?Change=Change&password_conf=ZAP&password_new=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/csrf\/ (Change,password_conf,password_new)",
+							"method": "GET",
+							"param": "Change",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/csrf/?Change=Change&password_conf=ZAP&password_new=ZAP\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nChange=Change\n\nThe user-controlled value was:\nchange"
+						},
+						{
+							"id": "1012",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/csrf/index.php?Change=Change&password_conf=ZAP&password_current=ZAP&password_new=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/csrf\/index.php (Change,password_conf,password_current,password_new)",
+							"method": "GET",
+							"param": "Change",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/csrf/index.php?Change=Change&password_conf=ZAP&password_current=ZAP&password_new=ZAP\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nChange=Change\n\nThe user-controlled value was:\nchange"
+						},
+						{
+							"id": "1010",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/csrf/index.php?Change=Change&password_conf=ZAP&password_new=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/csrf\/index.php (Change,password_conf,password_new)",
+							"method": "GET",
+							"param": "Change",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/csrf/index.php?Change=Change&password_conf=ZAP&password_new=ZAP\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nChange=Change\n\nThe user-controlled value was:\nchange"
+						},
+						{
+							"id": "1088",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/sqli/?Submit=Submit&id=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/sqli\/ (Submit,id)",
+							"method": "GET",
+							"param": "Submit",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/sqli/?Submit=Submit&id=ZAP\n\nappears to include user input in:\na(n) [input] tag [type] attribute\n\nThe user input found was:\nSubmit=Submit\n\nThe user-controlled value was:\nsubmit"
+						},
+						{
+							"id": "1108",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/sqli/index.php?Submit=Submit&id=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/sqli\/index.php (Submit,id)",
+							"method": "GET",
+							"param": "Submit",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/sqli/index.php?Submit=Submit&id=ZAP\n\nappears to include user input in:\na(n) [input] tag [type] attribute\n\nThe user input found was:\nSubmit=Submit\n\nThe user-controlled value was:\nsubmit"
+						},
+						{
+							"id": "1093",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/exec/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/exec\/ ()(Submit,ip)",
+							"method": "POST",
+							"param": "Submit",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/exec/\n\nappears to include user input in:\na(n) [input] tag [type] attribute\n\nThe user input found was:\nSubmit=Submit\n\nThe user-controlled value was:\nsubmit"
+						},
+						{
+							"id": "1137",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/exec/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/exec\/index.php ()(Submit,ip)",
+							"method": "POST",
+							"param": "Submit",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/exec/index.php\n\nappears to include user input in:\na(n) [input] tag [type] attribute\n\nThe user input found was:\nSubmit=Submit\n\nThe user-controlled value was:\nsubmit"
+						},
+						{
+							"id": "1136",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/upload/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/upload\/ ()(MAX_FILE_SIZE,Upload,uploaded)",
+							"method": "POST",
+							"param": "MAX_FILE_SIZE",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/upload/\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nMAX_FILE_SIZE=100000\n\nThe user-controlled value was:\n100000"
+						},
+						{
+							"id": "1140",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/upload/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/upload\/ ()(MAX_FILE_SIZE,Upload,uploaded)",
+							"method": "POST",
+							"param": "Upload",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/upload/\n\nappears to include user input in:\na(n) [input] tag [name] attribute\n\nThe user input found was:\nUpload=Upload\n\nThe user-controlled value was:\nuploaded"
+						},
+						{
+							"id": "973",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/upload/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/upload\/index.php ()(MAX_FILE_SIZE,Upload,uploaded)",
+							"method": "POST",
+							"param": "MAX_FILE_SIZE",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/upload/index.php\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nMAX_FILE_SIZE=100000\n\nThe user-controlled value was:\n100000"
+						},
+						{
+							"id": "987",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/upload/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/upload\/index.php ()(MAX_FILE_SIZE,Upload,uploaded)",
+							"method": "POST",
+							"param": "Upload",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/upload/index.php\n\nappears to include user input in:\na(n) [input] tag [name] attribute\n\nThe user input found was:\nUpload=Upload\n\nThe user-controlled value was:\nuploaded"
+						},
+						{
+							"id": "1139",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/ ()(btnSign,mtxMessage,txtName)",
+							"method": "POST",
+							"param": "btnSign",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/xss_s/\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nbtnSign=Sign Guestbook\n\nThe user-controlled value was:\nsign guestbook"
+						},
+						{
+							"id": "1138",
+							"uri": "http://127.0.0.1:8081/vulnerabilities/xss_s/index.php",
+							"nodeName": "http:\/\/127.0.0.1:8081\/vulnerabilities\/xss_s\/index.php ()(btnSign,mtxMessage,txtName)",
+							"method": "POST",
+							"param": "btnSign",
+							"attack": "",
+							"evidence": "",
+							"otherinfo": "User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:\n\nhttp://127.0.0.1:8081/vulnerabilities/xss_s/index.php\n\nappears to include user input in:\na(n) [input] tag [value] attribute\n\nThe user input found was:\nbtnSign=Sign Guestbook\n\nThe user-controlled value was:\nsign guestbook"
+						}
+					],
+					"count": "16",
+					"systemic": false,
+					"solution": "<p>Validate all input and sanitize output it before writing to any HTML attributes.</p>",
+					"otherinfo": "<p>User-controlled HTML attribute values were found. Try injecting special characters to see if XSS might be possible. The page at the following URL:</p><p></p><p>http://127.0.0.1:8081/vulnerabilities/brute/?Login=Login&password=ZAP&username=ZAP</p><p></p><p>appears to include user input in:</p><p>a(n) [input] tag [value] attribute</p><p></p><p>The user input found was:</p><p>Login=Login</p><p></p><p>The user-controlled value was:</p><p>login</p>",
+					"reference": "<p>https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html</p>",
+					"cweid": "20",
+					"wascid": "20",
+					"sourceid": "434"
+				}
+			]
+		}
+	],
+	"sequences":[
+	]
+
+}

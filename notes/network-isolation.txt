@@ -1,0 +1,61 @@
+﻿Lab 6B - Target isolation evidence
+Collected (local time): 2026-11-18 07:25:19 +05:30
+Note: session cookie values are redacted in this copy; all other values are as collected.
+
+--- Docker container state ---
+NAME=lab6a-dvwa IMAGE=sagikazarmark/dvwa:latest STATUS=Up 40 seconds PORTS=127.0.0.1:8081->80/tcp
+
+--- Published port binding (HostConfig.PortBindings) ---
+{"80/tcp":[{"HostIp":"127.0.0.1","HostPort":"8081"}]}
+
+--- Container network settings ---
+{"bridge":{"IPAMConfig":null,"Links":null,"Aliases":null,"DriverOpts":null,"GwPriority":0,"NetworkID":"fbce100e054daa67dbe6c3b1043b63c5e6661a9a5c5848e05d86cc39546a9524","EndpointID":"18909ae0f0869109be41f876a7772580c6ab9086804f683aed07d851a1d59da5","Gateway":"172.17.0.1","IPAddress":"172.17.0.2","MacAddress":"36:b8:a5:72:c6:6b","IPPrefixLen":16,"IPv6Gateway":"","GlobalIPv6Address":"","GlobalIPv6PrefixLen":0,"DNSNames":null}}
+
+--- Host listener for TCP/8081 ---
+TCP    127.0.0.1:8081         0.0.0.0:0              LISTENING       6924
+TCP    127.0.0.1:53168        127.0.0.1:8081         TIME_WAIT       0
+
+--- Host IPv4 addresses (for non-loopback control test) ---
+172.20.32.1
+169.254.68.8
+169.254.232.173
+169.254.65.111
+172.20.7.48
+169.254.237.209
+
+--- TCP/8081 connectivity test to each host IPv4 address ---
+172.20.32.1:8081 reachable=False
+169.254.68.8:8081 reachable=False
+169.254.232.173:8081 reachable=False
+169.254.65.111:8081 reachable=False
+172.20.7.48:8081 reachable=False
+169.254.237.209:8081 reachable=False
+
+--- Local reachability ---
+HTTP/1.1 302 Found
+Date: Wed, 18 Nov 2026 01:55:25 GMT
+Server: Apache/2.4.10 (Debian)
+Set-Cookie: PHPSESSID=[redacted]; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Set-Cookie: PHPSESSID=[redacted]; path=/; httponly
+Set-Cookie: security=impossible; httponly
+Location: login.php
+Content-Length: 0
+Content-Type: text/html; charset=UTF-8
+
+--- Host firewall rules mentioning Docker (enabled rules) ---
+
+DisplayName            Direction Action Profile
+-----------            --------- ------ -------
+Docker Desktop Backend   Inbound  Allow  Public
+Docker Desktop Backend   Inbound  Allow  Public
+
+
+
+--- Inbound firewall rules mentioning port 8081 ---
+No inbound firewall rule explicitly scoped to local port 8081 was found.
+
+--- Interpretation ---
+The container publishes 127.0.0.1:8081 -> 80/tcp only. The host socket table shows the listener bound to 127.0.0.1 rather than 0.0.0.0. Non-loopback host addresses were tested and did not accept TCP/8081. No separate-device or external-network test was performed, so this evidence supports loopback-only isolation on this host; it does not prove unreachability from every possible external network.

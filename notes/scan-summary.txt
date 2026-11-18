@@ -1,0 +1,45 @@
+Lab 6B - OWASP ZAP Dynamic Analysis - Actual Run Summary
+Student: Aditey Mehra | Roll: 2301730266 | Section D | Semester 7
+K.R. Mangalam University | Secure Coding and Vulnerabilities
+
+Target origin: http://127.0.0.1:8081
+Deployment: existing Docker container lab6a-dvwa (sagikazarmark/dvwa:latest), DVWA v1.10 *Development*
+Published port: 127.0.0.1:8081 -> 80/tcp (loopback only)
+Scan mode: authenticated, DVWA security level low
+ZAP version: 2.17.0 (portable Crossplatform distribution)
+Dedicated session: lab6b-zap-auth.session
+Dedicated context: Lab6B-DVWA (contextId 2); Default Context set out of scope
+Include regex: ^http://127\\.0\\.0\\.1:8081(?:/.*)?$
+Excluded paths: logout.php, setup.php, security.php and all non-target origins
+Authentication: form-based login at /login.php with user_token anti-CSRF handling; ZAP user lab6b-scan-user (userId 0)
+Session note: DVWA security=low was seeded into the ZAP user session cookie after ZAP login because ZAP's login-page request reset the cookie to impossible. Logged-in indicator was set to .* to prevent re-login from resetting the seeded level; authenticated state was verified from actual response bodies containing "You have logged in as 'admin'" and "Security Level: low".
+
+Traditional Spider (authenticated):
+  scanId 4, 2026-11-18T07:50:49+05:30 to 07:50:58+05:30, 9.5 s, status 100
+  171 discovered URLs, 165 messages during the scan, 8 error responses (6x404, 2x500)
+  maxDepth 3, maxChildren 20, recurse true
+  Key paths: /index.php, /instructions.php, /about.php, /phpinfo.php and /vulnerabilities/{brute,exec,csrf,fi,upload,captcha,sqli,sqli_blind,xss_r,xss_s}/
+  Parameters observed included id, name, page, ip, txtName, password_new/password_current/password_conf and user_token.
+
+Active Scan (authenticated):
+  scanId 0, started 2026-11-18T08:10:35+05:30, stopped 08:23:18+05:30 after 722.9 s
+  Final progress 26 percent; this was a time-capped partial scan, not a 100 percent completed scan.
+  5,788 scanner-reported requests; 5,838 messages observed in the scan window; 28 scanner-reported alerts; 24 new alerts
+  Default Policy; maxScanDurationInMins 10; maxRuleDurationInMins 2
+  Container was kept running by a local watchdog because Docker Desktop stopped repeatedly during the lab.
+
+Alert totals after both scans: 519
+  High: 25 | Medium: 190 | Low: 237 | Informational: 67
+Confidence: High 217 | Medium 249 | Low 53
+
+Top three actual findings:
+  1. Cross Site Scripting (Reflected) - High risk, Medium confidence, 18 instances; parameter name at /vulnerabilities/xss_r/; evidence </pre><scrIpt>alert(1);</scRipt><pre>
+  2. Cross Site Scripting (Persistent) - High risk, Medium confidence, 4 instances; parameter txtName at /vulnerabilities/xss_s/
+  3. Path Traversal - High risk, Medium confidence; parameter page at /vulnerabilities/fi/?page=%2Fetc%2Fpasswd; evidence root:x:0:0
+Also present: Remote File Inclusion (High/Medium, 1) and SQL Injection (High/Medium, 1 at the exec ip parameter; likely scanner misclassification of command-injection behaviour and not independently validated).
+
+Limitations:
+  - No separate-device or external-network reachability test was performed; isolation is based on Docker publish binding, listener state and host reachability checks only.
+  - Active Scan reached 26 percent before the time cap; findings from later rules may be missing.
+  - Automated alerts were not all manually exploit-verified; DVWA is intentionally vulnerable and low security was used.
+  - The seeded low-security cookie and logged-in indicator were necessary to preserve the intended test level; this configuration is documented rather than hidden.

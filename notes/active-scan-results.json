@@ -1,0 +1,38 @@
+﻿{
+  "tool": "OWASP ZAP",
+  "version": "2.17.0",
+  "scanType": "Active Scan (authenticated as lab6b-scan-user, DVWA security=low)",
+  "scanId": "0",
+  "start": "2026-11-18T08:10:35.4649324+05:30",
+  "end": "2026-11-18T08:23:18.4000000+05:30",
+  "durationSeconds": 722.9,
+  "finalStatus": "26 percent - stopped at the 12-minute time cap; not a completed 100% scan",
+  "settings": {
+    "url": "http://127.0.0.1:8081/",
+    "contextId": "2",
+    "userId": "0",
+    "recurse": "true",
+    "scanPolicyName": "Default Policy",
+    "maxScanDurationInMins": 10,
+    "maxRuleDurationInMins": 2
+  },
+  "scannerReportedRequests": "5788",
+  "scannerReportedAlerts": "28",
+  "requestsDuringScan": 5838,
+  "totalAlertsAfterScan": 519,
+  "newAlerts": 24,
+  "exclusions": [
+    "^http://127\\.0\\.0\\.1:8081/logout\\.php.*$",
+    "^http://127\\.0\\.0\\.1:8081/setup\\.php.*$",
+    "^http://127\\.0\\.0\\.1:8081/security\\.php.*$",
+    "^https?://(?!(?:127\\.0\\.0\\.1:8081)(?:/|$)).*$"
+  ],
+  "responseSummaryDuringScan": {
+    "HTTP 200": 5405,
+    "HTTP 404": 256,
+    "HTTP 302": 99,
+    "HTTP 301": 72,
+    "HTTP 500": 6
+  },
+  "sessionVerification": "Sample Active Scan requests carried Cookie: PHPSESSID=[redacted]; security=low, confirming the intended DVWA level was used."
+}

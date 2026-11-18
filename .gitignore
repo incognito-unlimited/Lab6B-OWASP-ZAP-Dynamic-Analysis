@@ -1,0 +1,10 @@
+# ZAP session data and local runtime files must never be committed
+*.session
+*.session.lck
+*.log
+zap.log
+.zap/
+
+# Local/tooling artifacts
+__pycache__/
+*.pyc
